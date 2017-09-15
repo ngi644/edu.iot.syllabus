@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="edu.iot.syllabus">
+
+  <i18n:registerTranslations directory="locales" />
+
+  <includeDependencies package="." />
+
+  <include package=".browser" />
+
+
+  <genericsetup:registerProfile
+      name="default"
+      title="edu.iot.syllabus"
+      directory="profiles/default"
+      description="Installs the edu.iot.syllabus add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.post_install"
+      />
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="edu.iot.syllabus (uninstall)"
+      directory="profiles/uninstall"
+      description="Uninstalls the edu.iot.syllabus add-on."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      post_handler=".setuphandlers.uninstall"
+      />
+
+
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="edu.iot.syllabus-hiddenprofiles" />
+
+</configure>
